@@ -2,10 +2,10 @@ import networkx as nx
 
 class Graph:
 
-    def __init__(self, order, size, edge_list):
+    def __init__(self, order, edge_list):
         self.order = order
-        self.size = size
         self.edge_list = edge_list
+        self.size = len(self.edge_list)
 
         self.G = nx.Graph()
         self.G.add_nodes_from(range(1,self.order+1))
@@ -29,7 +29,15 @@ class Graph:
 
     def get_edge_list(self):
         return self.edge_list
-
-
     def get_graph(self):
         return self.G
+
+    def add_edge(self, v1, v2):
+        # add edge e = v1v2 to graph G
+        self.G.add_edge(v1,v2)
+
+
+    def delete_edge(self, v1, v2):
+        # delete edge e = v1v2 from graph G
+        self.G.remove_edge(v1,v2)
+
