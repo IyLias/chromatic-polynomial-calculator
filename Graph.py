@@ -1,5 +1,6 @@
 import networkx as nx
 import numpy as np
+import copy
 
 class Graph:
 
@@ -26,9 +27,9 @@ class Graph:
         self.chromatic_number = 0
         self.chromatic_polynomial = 0
 
+
     def set_adj_matrix(self, adj_matrix):
         self.adj_matrix = adj_matrix
-
 
 
     def get_order(self):
@@ -40,6 +41,10 @@ class Graph:
     def get_adj_matrix(self):
         return self.adj_matrix
 
+
+    def get_density(self):
+        d = (2 * self.size) / (self.order * (self.order-1))
+        return d
 
     def is_empty_graph(self):
         if self.size == 0:
@@ -56,6 +61,26 @@ class Graph:
             return False
 
 
+    def is_connected_graph(self):
+        # If G is connected and degree of every vertices is 2, then it's cycle graph
+        return nx.is_connected(self.G)
+
+    def is_cycle_graph(self):
+
+        if not self.is_connected_graph():
+            return False
+
+        degree_sequence = [self.G.degree[i] for i in range(1,self.order+1) ]
+        for i in range(0, self.order):
+            if degree_sequence[i] != 2:
+                return False
+
+        return True
+
+
+    def is_tree(self):
+        return nx.is_tree(self.G)
+
 
     def get_chromatic_polynomial(self):
         pass
@@ -71,6 +96,7 @@ class Graph:
             self.G.add_edge(v1,v2)
             self.size += 1
 
+        return copy.deepcopy(self)
 
     def delete_edge(self, v1, v2):
         # delete edge e = v1v2 from graph G
@@ -79,6 +105,9 @@ class Graph:
             self.adj_matrix[v2-1][v1-1] = 0
             self.G.remove_edge(v1,v2)
             self.size -= 1
+
+        return copy.deepcopy(self)
+
 
     def contraction(self, v1, v2):
         # graph contraction: vertex identification of v1 and v2
@@ -113,3 +142,5 @@ class Graph:
                     size += self.adj_matrix[i][j]
         size /= 2
         self.size = int(size)
+
+        return copy.deepcopy(self)
