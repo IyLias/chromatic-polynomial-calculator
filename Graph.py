@@ -123,7 +123,7 @@ class Graph:
 
         new_mat = np.delete(self.adj_matrix, v1-1,0)
         new_mat = np.delete(new_mat, v1-1, 1)
-        print(new_mat)
+
         self.adj_matrix = new_mat
         self.order -= 1
 
