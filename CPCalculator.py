@@ -96,10 +96,10 @@ class CPCalculator:
         p = np.poly1d(p * (np.poly1d([1, 1]) - np.poly1d([1])), variable='λ')
         return p
 
-    def get_chromatic_polynomial(self,G):
+    def get_chromatic_polynomial(self,name,G):
 
         # show basic info of given graph G
-        print("Order of graph G is " + str(G.get_order()) + "  and " + "Size of graph G is " + str(G.get_size()))
+        print("Order of graph " + name  + " is " + str(G.get_order()) + "  and " + "Size of graph " + name  + " is " + str(G.get_size()))
 
         density = G.get_density()
         is_dense = True if density > 0.5 else False
