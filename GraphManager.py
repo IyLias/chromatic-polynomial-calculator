@@ -38,7 +38,7 @@ class GraphManager:
             value = (level-1)*k + int((unit * (2*nth -1)) / 2 ** (level-1))
             plt.subplot(self.plot_r, self.plot_c, value)
 
-            nx.draw_circular(g.get_graph(), with_labels=False)
+            nx.draw_circular(g.get_graph(), node_size= 50, with_labels=False)
 
 
     def show_figure(self):

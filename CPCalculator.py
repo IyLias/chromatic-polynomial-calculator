@@ -21,7 +21,32 @@ class CPCalculator:
         self.FRT_levels = 0
 
 
+    def sort_FRT_results(self):
+        unordered_parts = []
+        for i in range(1, len(self.FRT_results)-1):
+            if self.FRT_results[i][1] > self.FRT_results[i+1][1]:
+                for j in range(i+1, len(self.FRT_results)):
+                    unordered_parts.append(self.FRT_results[j])
+
+                for j in range(0, len(unordered_parts)):
+                    self.FRT_results.pop()
+                break
+
+        # insert elements of unordered_parts in FRT_results
+        for i in range(0, len(unordered_parts)):
+            target = unordered_parts[i]
+            for j in range(len(self.FRT_results)-1, -1,-1):
+                if self.FRT_results[j][1] == target[1]:
+                    if self.FRT_results[j][1] == self.FRT_levels:
+                        self.FRT_results.append(target)
+                    else:
+                        self.FRT_results.insert(j+1, target)
+                    break
+
+
+
     def get_FRT_results(self):
+        self.sort_FRT_results()
         return self.FRT_results
 
 
@@ -87,50 +112,35 @@ class CPCalculator:
     def FRT(self, G, is_dense, level):
         # This function produces chromatic polynomial of arbitrary graph G by using FRT
         # P(G, λ) = P(G + xy, λ) + P(G * xy, λ)
-        print("level of G: ", level)
-        print("adj_mat of G: ", G.get_adj_matrix())
-
         if self.FRT_levels < level:
             self.FRT_levels = level
 
         # exit conditions.. If G is O_n , K_n, C_n, T_n, then return its chromatic polynomial
         if G.is_empty_graph():
            return self.cp_of_empty_graph(G)
-
         if G.is_complete_graph():
             return self.cp_of_complete_graph(G)
-
         if G.is_cycle_graph():
             return self.cp_of_cycle_graph(G)
-
         if G.is_tree():
             return self.cp_of_tree(G)
-
-
         cp = 0
         g1 = copy.deepcopy(G)
         g2 = copy.deepcopy(G)
 
         if is_dense:
             [x,y] = self.get_pair_of_vertices(G, False)
-
             g1.add_edge(x+1,y+1)
             self.FRT_results.append((g1, level+1))
-
             g2.contraction(x+1,y+1)
             self.FRT_results.append((g2,level+1))
-
             cp = self.FRT(g1, is_dense,level+1) + self.FRT(g2, is_dense,level+1)
-
         else:
             [x, y] = self.get_pair_of_vertices(G, True)
-
             g1.delete_edge(x + 1, y + 1)
             self.FRT_results.append((g1, level+1))
-
             g2.contraction(x + 1, y + 1)
             self.FRT_results.append((g2, level+1))
-
             cp = self.FRT(g1, is_dense,level+1) - self.FRT(g2, is_dense,level+1)
 
         cp = np.poly1d(cp, variable='λ')

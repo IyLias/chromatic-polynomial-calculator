@@ -24,17 +24,31 @@ if __name__ == '__main__':
                 [0, 0, 1, 0, 1],
                 [1, 1, 0, 1, 0]]
 
-    graph1 = Graph(5, adj_mat1)
+    
+    adj_mat4 = [
+        [0,1,1,0,0,0,0,0,0],
+        [1,0,1,1,1,0,0,0,0],
+        [1,1,0,1,1,0,0,0,0],
+        [0,1,1,0,1,0,1,0,0],
+        [0,1,1,1,0,0,0,1,0],
+        [0,0,0,0,0,0,1,1,0],
+        [0,0,0,1,0,1,0,1,1],
+        [0,0,0,0,1,1,1,0,1],
+        [0,0,0,0,0,1,1,1,0],
+    ]
+
+    graph1 = Graph(9, adj_mat4)
 
     cpCalculator = CPCalculator()
     print("Chromatic Polynomial of graph1: \n" + str(cpCalculator.get_chromatic_polynomial(graph1)))
 
     graphs = cpCalculator.get_FRT_results()
     level = cpCalculator.get_FRT_levels()
-    print(graphs)
+    #print(graphs)
+    print(level)
 
     graphManager = GraphManager(0,0)
-    graphManager.add_graph_with_tree_structure(graphs, level)
-    graphManager.show_figure()
+    #graphManager.add_graph_with_tree_structure(graphs, level)
+    #graphManager.show_figure()
 
 
