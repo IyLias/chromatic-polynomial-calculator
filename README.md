@@ -1,8 +1,14 @@
 # Chromatic-Polynomial-Calculator
 
-This is a Calculator that calculates chromatic polynomial of arbitrary graph $G$.
+This project is derived from my paper titled <br><br> '**Chromatic polynomial calculator based on FRT: Fundamental
+Reduction Theorem / Kwon Seok Jin Dec 17, 2023**'.
 
 <br>
+
+We designed the Calculator that calculates chromatic polynomial of arbitrary graph $G$ from the idea of **FRT : Fundamental
+Reduction Theorem.** 
+
+<br><br>
 
 ## Introduction 
 
