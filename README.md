@@ -2,7 +2,7 @@
 
   This project is derived from my paper titled 
       
-  > Chromatic polynomial calculator based on FRT: Fundamental Reduction Theorem / Kwon Seok Jin,  Dec 17 2023
+  > [Chromatic polynomial calculator based on FRT: Fundamental Reduction Theorem / Kwon Seok Jin,  Dec 20 2023](KSJ-Chromatic_Polynomials.pdf)
 
 <br>
 
