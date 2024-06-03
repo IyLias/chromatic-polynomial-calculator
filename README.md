@@ -40,8 +40,7 @@ $H • e = G • e$. Substituting $H$ to $G$ leads to new form of FRT : Subtract
 
 <br><br>
 
-Since we know chromatic polynomial of $O_n$ and $K_n$, 
-($P(O_n,\lambda)=\lambda^n$ and $P(K_n,\lambda) = \lambda(\lambda-1)(\lambda-2)...(\lambda-n+1) = \lambda^{\underline{n}}$), 
+Since we know chromatic polynomial of $O_n$ and $K_n$, ($P(O_n,\lambda)=\lambda^n$ and $P(K_n,\lambda) = \lambda(\lambda-1)(\lambda-2)...(\lambda-n+1) = \lambda^{\underline{n}}$), 
 FRT makes possible to get chromatic polynomial of arbitrary graphs.
 
 
